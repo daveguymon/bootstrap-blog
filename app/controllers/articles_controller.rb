@@ -20,6 +20,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.created_at = Time.now
 
     if @article.save
       redirect_to @article
@@ -29,6 +30,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    puts params.inspect
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
